@@ -9,4 +9,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="Armas">
+        <item>M4A1</item>
+        <item>AK74M</item>
+        <item>RSASS</item>
+    </string-array>
+
 </resources>

@@ -16,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.pareddehierro.eftaplication.dummy.DummyContent;
+
 /**
  * @Author Adan Jose Gomez Hernandez
  */
@@ -23,7 +25,8 @@ public class MainActivity extends AppCompatActivity
         implements
         NavigationView.OnNavigationItemSelectedListener,
         FragmentInicio.OnFragmentInteractionListener,
-        FragmentMapas.OnFragmentInteractionListener
+        FragmentMapas.OnFragmentInteractionListener,
+        FragmentArmas.OnListFragmentInteractionListener
 {
 
     @Override
@@ -116,7 +119,9 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_armas)
         {
-
+            Log.i("NavigationDrawer","Entrando en Armas");
+            frag = new FragmentArmas();
+            FragmentTransaction = true;
         }
         else if (id == R.id.nav_about)
         {
@@ -142,6 +147,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri)
     {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
     }
 }
