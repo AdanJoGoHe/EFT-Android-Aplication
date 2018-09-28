@@ -6,16 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.pareddehierro.eftaplication.FragmentArmas.OnListFragmentInteractionListener;
 import com.example.pareddehierro.eftaplication.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+/**
+ * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * specified {@link OnListFragmentInteractionListener}.
+ * TODO: Replace the implementation with code for your data type.
+ */
+public class MyFragmentArmasRecyclerViewAdapter extends RecyclerView.Adapter<MyFragmentArmasRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-    private final FragmentArmas.OnListFragmentInteractionListener mListener;
+    private final OnListFragmentInteractionListener mListener;
 
-    public MyItemRecyclerViewAdapter(List<DummyItem> items, FragmentArmas.OnListFragmentInteractionListener listener) {
+    public MyFragmentArmasRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -23,7 +29,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_fragmentarmas, parent, false);
         return new ViewHolder(view);
     }
 

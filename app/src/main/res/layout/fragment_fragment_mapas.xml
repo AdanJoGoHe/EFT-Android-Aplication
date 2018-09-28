@@ -10,19 +10,19 @@
 
     <Button
         android:id="@+id/botonInformacion"
-        android:layout_width="wrap_content"
+        android:layout_width="239dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginRight="148dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginRight="68dp"
         android:layout_marginBottom="54dp"
-        android:text="Button" />
+        android:text="Dame Informacion" />
 
     <TextView
         android:id="@+id/textoInformacion"
@@ -40,5 +40,5 @@
         android:layout_marginEnd="74dp"
         android:layout_marginRight="74dp"
         android:layout_marginBottom="297dp"
-        android:text="TextView" />
+        android:text="Aqui se pondra la informacion" />
 </RelativeLayout>

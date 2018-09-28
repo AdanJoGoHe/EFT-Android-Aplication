@@ -15,11 +15,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -38,7 +35,7 @@ public class FragmentMapas extends Fragment
 
     public void requestMessage()
     {
-        String url = "http://192.168.1.76:40000/api/armas/1";
+        String url = "http://192.168.201.4:40000/api/armas/1";
         Log.i("Prueba", "justo antes de la conexion");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -56,8 +53,7 @@ public class FragmentMapas extends Fragment
                     public void onErrorResponse(VolleyError error)
                     {
                         Log.i("ERROR", error.toString());
-                        System.out.println(error.toString() + " ERROR DIOSTIOQUEGRACIOSO");
-
+                        System.out.println(error.toString() + " ERROR QUE GRACIOSO");
                         textViewMessage.setText(error.toString());
                     }
                 });
