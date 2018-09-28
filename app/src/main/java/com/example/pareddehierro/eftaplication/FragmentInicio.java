@@ -4,9 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import org.json.JSONObject;
 
 
 /**
@@ -17,7 +25,8 @@ import android.view.ViewGroup;
  * Use the {@link FragmentInicio#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentInicio extends Fragment {
+public class FragmentInicio extends Fragment
+{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -75,6 +84,7 @@ public class FragmentInicio extends Fragment {
         if (mListener != null)
         {
             mListener.onFragmentInteraction(uri);
+
         }
     }
 
@@ -109,8 +119,42 @@ public class FragmentInicio extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnFragmentInteractionListener
+    {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+ /*
+    public int requestedInfo(int i)
+    {
+        String url = "localhost:40000/api/armas/" + i;
+        //final TextView mTextView = findViewById(R.id.requestInfo);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>()
+                {
+                    @Override
+                    public void onResponse(JSONObject response)
+                    {
+                        // mTextView.setText("Response: " + response.toString());
+                        Log.i("mecomeslapolla",response.toString());
+
+
+                    }
+                }, new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        // TODO: Handle error
+                        Log.i("mecomeslapolla","Hola jaj...");
+                    }
+                });
+        // Access the RequestQueue through your singleton class.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(jsonObjectRequest);
+
+        return 1;
+    }
+    */
 }
