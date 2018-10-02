@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity
         //    return true;
         // }
 
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity
 
         boolean FragmentTransaction = false;
         Fragment frag = null;
+
 
         if (id == R.id.nav_inicio)
         {
@@ -121,11 +123,15 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_historia)
         {
-
+            Log.i("NavigationDrawer","Entrando en historia");
+            frag = new FragmentHistoria();
+            FragmentTransaction = true;
         }
         else if (id == R.id.nav_habilidades)
         {
-
+            Log.i("NavigationDrawer","Entrando en habilidades");
+            frag = new FragmentHabilidades();
+            FragmentTransaction = true;
         }
         else if (id == R.id.nav_armas)
         {
@@ -135,11 +141,15 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_about)
         {
-
+            Log.i("NavigationDrawer","Entrando en about");
+            frag = new FragmentAbout();
+            FragmentTransaction = true;
         }
         else if (id == R.id.nav_settings)
         {
-
+            Log.i("NavigationDrawer","Entrando en settings");
+            frag = new FragmentSettings();
+            FragmentTransaction = true;
         }
 
         if(FragmentTransaction==true)
