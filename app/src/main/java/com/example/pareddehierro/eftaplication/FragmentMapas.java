@@ -1,6 +1,9 @@
 package com.example.pareddehierro.eftaplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,9 +18,17 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 /**
@@ -28,38 +39,14 @@ import org.json.JSONObject;
  */
 public class FragmentMapas extends Fragment
 {
-    Button buttonRequestMessage;
-    TextView textViewMessage = null;
+
 
     private static String aux;
 
-    public void requestMessage()
-    {
-        String url = "http://192.168.201.4:40000/api/armas/1";
-        Log.i("Prueba", "justo antes de la conexion");
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject response)
-                    {
-                        Log.i("Prueba", response.toString());
-                        System.out.println(response.toString() + " DIOSTIOQUEGRACIOSO");
-                        textViewMessage.setText(response.toString());
-                    }
-                }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
-                        Log.i("ERROR", error.toString());
-                        System.out.println(error.toString() + " ERROR QUE GRACIOSO");
-                        textViewMessage.setText(error.toString());
-                    }
-                });
-        RequestQueue rq = Volley.newRequestQueue(getActivity().getApplicationContext());
-        rq.add(jsonObjectRequest);
-    }
+
+
 
 
     private OnFragmentInteractionListener mListener;
@@ -77,16 +64,7 @@ public class FragmentMapas extends Fragment
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fragment_mapas, container, false);
 
-        textViewMessage =(TextView) v.findViewById(R.id.textoInformacion);
-        buttonRequestMessage =(Button) v.findViewById(R.id.botonInformacion);
-        buttonRequestMessage.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-                requestMessage();
-            }
 
-        });
 
         return v;
     }
@@ -126,7 +104,8 @@ public class FragmentMapas extends Fragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnFragmentInteractionListener
+    {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }

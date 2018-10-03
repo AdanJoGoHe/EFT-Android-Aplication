@@ -1,6 +1,6 @@
 package com.example.pareddehierro.eftaplication;
 
-import android.arch.lifecycle.ViewModelProviders;
+import android.arch.lifecycle.ViewModel;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,31 +30,9 @@ public class FragmentSettings extends Fragment
 
 
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        buttonRequestMessage =(Button) v.findViewById(R.id.botonInformacion);
-        buttonRequestMessage.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Locale locale = new Locale("en");
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
-               //Toast.makeText(this, getResources().getString(R.string.), Toast.LENGTH_SHORT).show();
-            }
-
-        });
         return v;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(FragmentSettingsViewModel.class);
-        // TODO: Use the ViewModel
-    }
+
 
 }
