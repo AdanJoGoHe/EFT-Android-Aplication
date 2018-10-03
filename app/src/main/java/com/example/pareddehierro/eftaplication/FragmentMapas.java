@@ -43,12 +43,6 @@ public class FragmentMapas extends Fragment
 
     private static String aux;
 
-
-
-
-
-
-
     private OnFragmentInteractionListener mListener;
 
     public FragmentMapas() {

@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 
 /**
- * @Author Adan Jose Gomez Hernandez
+ * @author Adan
  */
 public class MainActivity extends AppCompatActivity
         implements
