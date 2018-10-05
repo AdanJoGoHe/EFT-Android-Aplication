@@ -1,7 +1,11 @@
 package com.example.pareddehierro.eftaplication;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,16 +36,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class FragmentArmasP extends Fragment
 {
     Button buttonRequestMessage;
     TextView textViewMessage = null;
+    ImageView imageView = null;
     private Spinner mSpinner;
     ArrayList<String> elementos;
 
+    //Metodos propios o de servidor
 
     public void requestMessage()
     {
@@ -159,6 +171,12 @@ public class FragmentArmasP extends Fragment
                                 textViewMessage.append(Html.fromHtml(" <b>"+token[i] +" </b>: "));
                                 textViewMessage.append(response.getString(token[i]) + "\n");
                             }
+
+                            String linkImagen = response.getString("Imagen");
+                            Log.i("SpecificResponse", linkImagen);
+
+                            Bitmap obtener_imagen = get_imagen(linkImagen);
+                            imageView.setImageBitmap(obtener_imagen);
                         }
                         catch (JSONException e)
                         {
@@ -183,6 +201,45 @@ public class FragmentArmasP extends Fragment
         rq.add(jsonObjectRequest);
     }
 
+    private void llamadaAlServidor(View v)
+    {
+        textViewMessage =(TextView) v.findViewById(R.id.textoInformacion);
+        buttonRequestMessage =(Button) v.findViewById(R.id.botonInformacion);
+        imageView =(ImageView) v.findViewById(R.id.imagenArmas);
+        buttonRequestMessage.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                requestMessage();
+            }
+
+        });
+    }
+
+    private Bitmap get_imagen(String url)
+    {
+        Log.i("get_Imagen",url + "llego Aqui en get imagen" );
+        Bitmap bm = null;
+        try {
+            URL _url = new URL(url);
+            URLConnection con = _url.openConnection();
+            con.connect();
+            Log.i("get_Imagen",url + " llego despues de con.connect" );
+            InputStream is = con.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is);
+            bm = BitmapFactory.decodeStream(bis);
+            bis.close();
+            is.close();
+        } catch (IOException e) {
+
+        }
+        Log.i("get_Imagen",url + " - " + bm );
+        return bm;
+    }
+    //Fin de metodos propios o de servidor
+
+    //Metodos creados por la clase
     private FragmentArmasViewModel mViewModel;
 
     public static FragmentArmasP newInstance()
@@ -233,20 +290,7 @@ public class FragmentArmasP extends Fragment
 
     }
 
-    private void llamadaAlServidor(View v)
-    {
-        textViewMessage =(TextView) v.findViewById(R.id.textoInformacion);
-        buttonRequestMessage =(Button) v.findViewById(R.id.botonInformacion);
-        buttonRequestMessage.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                requestMessage();
-            }
 
-        });
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
